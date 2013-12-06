@@ -2,15 +2,11 @@
 
 import sys
 import json
+import time
 
-print 'Number of arguments:', len(sys.argv), 'arguments.'
-print 'Argument List:', str(sys.argv)
-with open('/home/steve/uservoice/output.txt','w') as f:
-	for arg in sys.argv[1:]:
-		f.write(arg)
-		try:
-			arg = json.loads(arg)
-			print arg
-		except:
-			print ":("
-
+with open('/home/steve/uservoice/output.txt','a') as f:
+    f.write(str(time.time()) + '\n')
+    for k, v in json.loads(sys.argv[1]).items():
+        writestring = "%s : %s\n" % (k, v)
+        f.write(writestring)
+    f.write('\n \%----------\% \n')
